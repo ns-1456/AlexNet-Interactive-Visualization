@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classification Process Using AlexNet CNN</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Title Page Section -->
+    <section id="title-page" class="section">
+        <div class="container">
+            <h1>Image Classification Process Using AlexNet Convolutional Neural Network</h1>
+            <div class="title-info">
+                <p><strong>Student Name:</strong> [Your Name Here]</p>
+                <p><strong>Student ID:</strong> [Your ID Here]</p>
+                <p><strong>Course:</strong> ENCS 282 Technical Writing and Communication</p>
+                <p><strong>Tutorial Section:</strong> [Your Section]</p>
+                <p><strong>Date of Submission:</strong> <span id="current-date"></span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="introduction" class="section">
+        <div class="container">
+            <h2>1. Introduction</h2>
+            
+            <h3>1.1 What is Image Classification?</h3>
+            <p>
+                Image classification is a computer vision process that assigns a categorical label to an input image based on its visual content. This fundamental task enables machines to interpret and understand visual information, forming the foundation for applications ranging from autonomous vehicles to medical diagnostics.
+            </p>
+
+            <h3>1.2 The AlexNet Architecture</h3>
+            <p>
+                AlexNet, developed by Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton in 2012, represents a watershed moment in deep learning. This convolutional neural network (CNN) achieved unprecedented accuracy on the ImageNet Large Scale Visual Recognition Challenge (ILSVRC), reducing the error rate from 26% to 15.3%. The architecture demonstrated that deep neural networks could effectively learn hierarchical feature representations directly from raw pixel data, eliminating the need for hand-crafted features.
+            </p>
+
+            <h3>1.3 Process Environment and Context</h3>
+            <p>
+                The image classification process using AlexNet occurs in a computational environment equipped with substantial processing capabilities. Originally designed to leverage Graphics Processing Units (GPUs), the network processes images through a series of mathematical transformations. The process takes place during the inference phase, after the network has been trained on millions of labeled images from the ImageNet dataset, which contains 1.2 million training images across 1,000 object categories.
+            </p>
+
+            <h3>1.4 Principal Stages of the Process</h3>
+            <p>The image classification process through AlexNet consists of nine sequential stages:</p>
+            <ol>
+                <li><strong>Input Preprocessing:</strong> Image standardization and resizing</li>
+                <li><strong>First Convolutional Layer:</strong> Low-level feature detection</li>
+                <li><strong>First Pooling Layer:</strong> Spatial dimension reduction and feature consolidation</li>
+                <li><strong>Second Convolutional Layer:</strong> Mid-level feature extraction</li>
+                <li><strong>Deep Convolutional Layers:</strong> High-level feature abstraction</li>
+                <li><strong>Final Pooling:</strong> Feature map compression</li>
+                <li><strong>Fully Connected Layers:</strong> Feature combination and reasoning</li>
+                <li><strong>Classification Layer:</strong> Class score computation</li>
+                <li><strong>Softmax Output:</strong> Probability distribution generation</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Interactive Visualization Section -->
+    <section id="visualization" class="section">
+        <div class="container">
+            <h2>2. Interactive Process Visualization</h2>
+            <p class="instruction">Click through each stage to understand how an image is processed through AlexNet. Use the controls below to navigate through the classification process.</p>
+            
+            <!-- Sample Image Selector -->
+            <div class="image-selector">
+                <h3>Select Input Image:</h3>
+                <div class="sample-images">
+                    <div class="sample-image-card active" data-image="cat">
+                        <img src="assets/cat.jpg" alt="Cat" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22150%22 height=%22150%22%3E%3Crect fill=%22%23ddd%22 width=%22150%22 height=%22150%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23666%22%3ECat%3C/text%3E%3C/svg%3E'">
+                        <p>Cat</p>
+                    </div>
+                    <div class="sample-image-card" data-image="dog">
+                        <img src="assets/dog.jpg" alt="Dog" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22150%22 height=%22150%22%3E%3Crect fill=%22%23ddd%22 width=%22150%22 height=%22150%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23666%22%3EDog%3C/text%3E%3C/svg%3E'">
+                        <p>Dog</p>
+                    </div>
+                    <div class="sample-image-card" data-image="car">
+                        <img src="assets/car.jpg" alt="Car" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22150%22 height=%22150%22%3E%3Crect fill=%22%23ddd%22 width=%22150%22 height=%22150%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23666%22%3ECar%3C/text%3E%3C/svg%3E'">
+                        <p>Car</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visualization Canvas -->
+            <div class="visualization-wrapper">
+                <div class="canvas-container">
+                    <canvas id="visualization-canvas"></canvas>
+                </div>
+                
+                <!-- Stage Information Panel -->
+                <div class="stage-info-panel">
+                    <h3 id="stage-title">Stage 1: Input Preprocessing</h3>
+                    <div class="progress-indicator">
+                        <span id="progress-text">Step 1 of 9</span>
+                        <div class="progress-bar">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
+                    </div>
+                    <div id="stage-description" class="stage-description">
+                        <!-- Content will be dynamically updated -->
+                    </div>
+                    <div id="stage-specs" class="stage-specs">
+                        <!-- Technical specifications will be dynamically updated -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Controls -->
+            <div class="controls">
+                <button id="reset-btn" class="control-btn">Reset</button>
+                <button id="prev-btn" class="control-btn" disabled>Previous Step</button>
+                <button id="next-btn" class="control-btn">Next Step</button>
+                <button id="start-btn" class="control-btn primary">Start Process</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Operation Demos -->
+    <section id="operation-demos" class="section">
+        <div class="container">
+            <h2>2.5. Understanding CNN Operations</h2>
+            <p class="instruction">Explore how fundamental CNN operations work through these interactive demonstrations.</p>
+            
+            <!-- Feature Hierarchy -->
+            <div class="demo-card">
+                <h3>Feature Learning Hierarchy</h3>
+                <p>See how AlexNet progressively learns more complex features:</p>
+                <div class="demo-canvas-wrapper">
+                    <canvas id="feature-maps-demo"></canvas>
+                </div>
+            </div>
+
+            <!-- Convolution Demo -->
+            <div class="demo-card">
+                <h3>How Convolution Works</h3>
+                <p>Watch how a 3×3 filter slides across the input image to detect features like edges:</p>
+                <div class="demo-canvas-wrapper">
+                    <canvas id="convolution-demo"></canvas>
+                </div>
+                <div class="demo-explanation">
+                    <p><strong>Key Concept:</strong> The filter performs element-wise multiplication with the input region, then sums the results. This operation repeats across the entire image to create a feature map.</p>
+                </div>
+            </div>
+
+            <!-- Max Pooling Demo -->
+            <div class="demo-card">
+                <h3>How Max Pooling Works</h3>
+                <p>See how max pooling reduces dimensions while preserving important features:</p>
+                <div class="demo-canvas-wrapper">
+                    <canvas id="pooling-demo"></canvas>
+                </div>
+                <div class="demo-explanation">
+                    <p><strong>Key Concept:</strong> Max pooling selects the maximum value from each window, reducing spatial dimensions by ~75% while keeping the strongest activations (most important features).</p>
+                </div>
+            </div>
+
+            <!-- ReLU Demo -->
+            <div class="demo-card">
+                <h3>ReLU Activation Function</h3>
+                <p>Understand how ReLU introduces non-linearity:</p>
+                <div class="demo-canvas-wrapper">
+                    <canvas id="relu-demo"></canvas>
+                </div>
+                <div class="demo-explanation">
+                    <p><strong>Key Concept:</strong> ReLU (Rectified Linear Unit) converts all negative values to zero while keeping positive values unchanged. This simple non-linearity enables the network to learn complex patterns.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Stage Descriptions -->
+    <section id="process-stages" class="section">
+        <div class="container">
+            <h2>3. Detailed Process Stages</h2>
+
+            <h3>3.1 Stage 1: Input Preprocessing</h3>
+            <p>
+                The classification process begins with input preprocessing, where the raw image undergoes standardization. The input image, regardless of its original dimensions, is resized to a fixed dimension of 224×224 pixels with three color channels (Red, Green, Blue), resulting in a tensor of shape 224×224×3. This stage also involves pixel normalization, where pixel values are scaled to a standard range, typically by subtracting the mean RGB values computed from the training dataset. This preprocessing ensures consistency and facilitates effective learning. The standardized image tensor serves as the input to the first convolutional layer.
+            </p>
+
+            <h3>3.2 Stage 2: First Convolutional Layer</h3>
+            <p>
+                In the second stage, the preprocessed image passes through the first convolutional layer, which employs 96 filters (kernels) of size 11×11×3 with a stride of 4 pixels. Each filter slides across the input image, performing element-wise multiplication and summation operations to detect low-level features such as edges, corners, and color gradients. The large kernel size and stride enable the network to capture broad spatial patterns while reducing computational complexity. Following convolution, a Rectified Linear Unit (ReLU) activation function is applied element-wise, introducing non-linearity by converting negative values to zero. The output of this stage is a feature map of dimensions 55×55×96, representing 96 different feature channels. This stage connects directly to the preprocessing stage, taking the normalized image as input, and feeds into the first pooling layer.
+            </p>
+
+            <h3>3.3 Stage 3: First Pooling and Normalization</h3>
+            <p>
+                The third stage implements max pooling with a 3×3 window and stride of 2, systematically reducing the spatial dimensions of the feature maps from 55×55×96 to 27×27×96. Max pooling operates by selecting the maximum value within each pooling window, thereby retaining the most prominent features while achieving translation invariance and reducing computational load for subsequent layers. Additionally, this stage originally incorporated Local Response Normalization (LRN), a technique that normalizes activation values across neighboring feature maps to enhance generalization. The reduced feature maps maintain the detected features from the previous convolutional layer while presenting a more compact representation for further processing.
+            </p>
+
+            <h3>3.4 Stage 4: Second Convolutional Layer</h3>
+            <p>
+                During the fourth stage, the network applies 256 convolutional filters of size 5×5×96 to the pooled feature maps. Unlike the first convolutional layer, these smaller kernels operate on already-processed features, enabling the detection of more complex, mid-level patterns by combining the low-level features identified earlier. Each of the 256 filters learns to recognize specific combinations of edges and textures, such as object parts or distinctive patterns. Following convolution and ReLU activation, the output feature maps have dimensions 27×27×256, doubling the number of feature channels while maintaining spatial dimensions. This stage builds upon the features from the pooling layer and prepares increasingly abstract representations for deeper layers.
+            </p>
+
+            <h3>3.5 Stage 5: Deep Convolutional Layers</h3>
+            <p>
+                The fifth stage encompasses three consecutive convolutional layers (Conv3, Conv4, and Conv5) that progressively extract high-level features. The third convolutional layer applies 384 filters of size 3×3×256, followed by the fourth layer with 384 filters of size 3×3×384, and finally the fifth layer with 256 filters of size 3×3×384. These layers utilize smaller kernels (3×3) with padding to maintain spatial dimensions at 27×27 through the first two layers, then reduce to 13×13×256 after the final pooling operation. Each convolutional operation is followed by ReLU activation. These deep layers enable the network to recognize complex, abstract features such as object parts, textures, and semantic patterns. The hierarchical nature of these layers allows the network to compose simple features into increasingly sophisticated representations.
+            </p>
+
+            <h3>3.6 Stage 6: Final Pooling</h3>
+            <p>
+                The sixth stage applies a final max pooling operation with a 3×3 window and stride of 2 to the output of the deep convolutional layers. This operation compresses the spatial dimensions from 13×13×256 to 6×6×256, resulting in a highly compact feature representation totaling 9,216 values (6×6×256). This compressed representation captures the essential high-level features required for classification while significantly reducing the number of parameters needed in subsequent fully connected layers. The pooling operation ensures spatial invariance, meaning the network can recognize objects regardless of their precise location within the image. This stage marks the transition from feature extraction to classification, as the spatial feature maps are prepared for flattening.
+            </p>
+
+            <h3>3.7 Stage 7: Fully Connected Layers</h3>
+            <p>
+                The seventh stage consists of two fully connected layers that perform high-level reasoning. First, the 6×6×256 feature maps are flattened into a one-dimensional vector of 9,216 values. This vector is then processed through the first fully connected layer containing 4,096 neurons, where each neuron computes a weighted sum of all 9,216 input values followed by ReLU activation. A dropout layer with probability 0.5 follows, randomly deactivating neurons during training to prevent overfitting. The output then passes through a second fully connected layer, also with 4,096 neurons, followed by another dropout layer. These fully connected layers integrate the spatially-distributed features extracted by the convolutional layers, learning complex combinations that correspond to semantic concepts. The transformation from 9,216 features to 4,096 abstract representations enables the network to form high-level understanding necessary for classification.
+            </p>
+
+            <h3>3.8 Stage 8: Classification Layer</h3>
+            <p>
+                In the eighth stage, the 4,096-dimensional feature vector from the second fully connected layer is processed through the final classification layer, a fully connected layer with 1,000 neurons corresponding to the 1,000 object categories in the ImageNet dataset. Each neuron computes a weighted sum of the 4,096 input features, producing a raw score (logit) that indicates the network's confidence that the input image belongs to that particular class. Unlike previous layers, no activation function is applied at this stage; the raw scores are passed directly to the final stage. These scores represent the network's learned associations between the extracted features and each possible object category, with higher scores indicating stronger evidence for that class.
+            </p>
+
+            <h3>3.9 Stage 9: Softmax Output</h3>
+            <p>
+                The final stage applies the softmax function to the 1,000 class scores, transforming them into a probability distribution. The softmax function exponentiates each score and normalizes by the sum of all exponentiated scores, ensuring that the output values are positive and sum to exactly 1.0. Each resulting value represents the probability that the input image belongs to the corresponding class. The class with the highest probability is selected as the predicted label. For example, if processing an image of a cat, the "tabby cat" category might receive a probability of 0.73, "Egyptian cat" 0.15, and remaining categories sharing the remaining 0.12. This probabilistic output provides not only a classification decision but also a measure of the network's confidence, enabling applications to make informed decisions based on prediction certainty. The entire process, from input preprocessing through softmax output, typically completes in 1-2 milliseconds on modern GPUs.
+            </p>
+        </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section id="conclusion" class="section">
+        <div class="container">
+            <h2>4. Conclusion</h2>
+            
+            <h3>4.1 Process Performance and Efficiency</h3>
+            <p>
+                The AlexNet image classification process demonstrates remarkable efficiency and accuracy for its time. On modern GPU hardware, the complete forward pass through all nine stages requires approximately 1-2 milliseconds per image, enabling real-time processing of hundreds of images per second. The network contains approximately 60 million parameters and performs around 724 million mathematical operations per image. During its debut at ILSVRC 2012, AlexNet achieved a top-5 error rate of 15.3% and a top-1 error rate of 37.5%, representing a significant improvement over previous methods.
+            </p>
+
+            <h3>4.2 Practical Applications</h3>
+            <p>
+                The image classification process embodied by AlexNet has enabled numerous practical applications across diverse domains. In autonomous vehicles, similar CNN architectures classify road signs, pedestrians, and obstacles in real-time. Medical imaging systems employ these techniques to identify abnormalities in X-rays, MRIs, and CT scans, assisting radiologists in diagnosis. E-commerce platforms utilize image classification for visual search, allowing customers to find products by uploading photos. Social media applications automatically tag and organize photos, while security systems employ CNN-based classification for facial recognition and threat detection. Agriculture benefits from crop disease identification, and manufacturing employs quality control inspection systems based on these principles.
+            </p>
+
+            <h3>4.3 Limitations and Considerations</h3>
+            <p>
+                Despite its revolutionary impact, the AlexNet classification process has several limitations. The network requires substantial computational resources, with GPU acceleration being practically necessary for reasonable performance. Training the network from scratch demands enormous datasets—the original AlexNet was trained on 1.2 million labeled images over approximately one week using two high-end GPUs. The network's accuracy, while groundbreaking in 2012, has been surpassed by more recent architectures such as ResNet, EfficientNet, and Vision Transformers. AlexNet also exhibits vulnerability to adversarial examples—carefully crafted image perturbations imperceptible to humans can cause misclassification. Furthermore, the network functions as a "black box," making it challenging to interpret why specific classifications were made, which poses problems in critical applications requiring explainability.
+            </p>
+
+            <h3>4.4 Modern Evolution</h3>
+            <p>
+                The fundamental process established by AlexNet continues to influence contemporary computer vision systems. Modern architectures have refined the approach through innovations such as batch normalization (replacing LRN), residual connections (enabling much deeper networks), attention mechanisms (focusing on relevant image regions), and architectural efficiency improvements. While AlexNet itself is rarely deployed in production systems today, understanding its classification process provides essential insight into how modern CNNs operate, as they fundamentally follow the same principle: hierarchical feature extraction followed by classification. The process described here represents the foundation upon which the current state-of-the-art in computer vision is built.
+            </p>
+        </div>
+    </section>
+
+    <!-- Glossary/Appendix Section -->
+    <section id="glossary" class="section">
+        <div class="container">
+            <h2>Appendix: Glossary of Technical Terms</h2>
+            <div class="glossary-content">
+                <dl class="glossary-list">
+                    <dt>Activation Function</dt>
+                    <dd>A mathematical function applied to the output of a neuron that introduces non-linearity into the network, enabling it to learn complex patterns. Common examples include ReLU, sigmoid, and tanh.</dd>
+
+                    <dt>Backpropagation</dt>
+                    <dd>A training algorithm that computes the gradient of the loss function with respect to network weights by propagating error signals backward through the network layers, enabling weight updates through gradient descent.</dd>
+
+                    <dt>Batch Normalization</dt>
+                    <dd>A technique that normalizes the inputs of each layer by adjusting and scaling activations, accelerating training and improving network stability. It has largely replaced Local Response Normalization in modern architectures.</dd>
+
+                    <dt>Classification</dt>
+                    <dd>The task of assigning a categorical label to an input based on its features. In image classification, the network assigns one or more category labels (e.g., "cat," "dog") to an input image.</dd>
+
+                    <dt>Convolutional Layer</dt>
+                    <dd>A layer type that applies multiple learnable filters to the input, each detecting specific features by performing convolution operations. These layers are fundamental to CNNs and enable automatic feature extraction from images.</dd>
+
+                    <dt>Convolutional Neural Network (CNN)</dt>
+                    <dd>A class of deep neural networks specifically designed for processing grid-like data such as images. CNNs use convolutional layers to automatically learn hierarchical feature representations.</dd>
+
+                    <dt>Dropout</dt>
+                    <dd>A regularization technique that randomly deactivates a specified proportion of neurons during training, forcing the network to learn robust features and preventing overfitting to training data.</dd>
+
+                    <dt>Feature Map</dt>
+                    <dd>The output of a convolutional layer, representing the presence and intensity of specific features detected by a filter at different spatial locations in the input. A layer with N filters produces N feature maps.</dd>
+
+                    <dt>Filter (Kernel)</dt>
+                    <dd>A small matrix of learnable weights that slides across the input during convolution, detecting specific patterns such as edges, textures, or complex features. The filter's size determines its receptive field.</dd>
+
+                    <dt>Fully Connected Layer</dt>
+                    <dd>A layer where every neuron is connected to every neuron in the previous layer. These layers perform high-level reasoning by combining features learned by earlier layers, typically used near the network's output.</dd>
+
+                    <dt>GPU (Graphics Processing Unit)</dt>
+                    <dd>A specialized processor originally designed for graphics rendering, now extensively used for deep learning due to its ability to perform thousands of parallel mathematical operations efficiently.</dd>
+
+                    <dt>ImageNet</dt>
+                    <dd>A large-scale visual database containing over 14 million labeled images across 20,000+ categories, created for computer vision research. The ImageNet Large Scale Visual Recognition Challenge (ILSVRC) uses a subset of 1,000 categories.</dd>
+
+                    <dt>Inference</dt>
+                    <dd>The process of using a trained neural network to make predictions on new, unseen data. During inference, input data flows forward through the network to produce output predictions, without updating weights.</dd>
+
+                    <dt>Kernel</dt>
+                    <dd>See "Filter." The terms kernel and filter are often used interchangeably in the context of convolutional neural networks.</dd>
+
+                    <dt>Local Response Normalization (LRN)</dt>
+                    <dd>A normalization technique used in AlexNet that normalizes neuron activations using the activations of neighboring neurons in adjacent feature maps, promoting competition among features. Largely replaced by batch normalization in modern networks.</dd>
+
+                    <dt>Logit</dt>
+                    <dd>The raw, unnormalized output score from the final layer of a neural network before applying the softmax function. Logits represent the network's confidence for each class but are not scaled to probabilities.</dd>
+
+                    <dt>Max Pooling</dt>
+                    <dd>A downsampling operation that divides the input into non-overlapping regions and outputs the maximum value from each region, reducing spatial dimensions while retaining the most prominent features and providing translation invariance.</dd>
+
+                    <dt>Neuron</dt>
+                    <dd>The basic computational unit in a neural network that receives weighted inputs, sums them, and applies an activation function to produce an output. Inspired by biological neurons in the brain.</dd>
+
+                    <dt>Normalization</dt>
+                    <dd>The process of scaling input values to a standard range or distribution, improving training stability and convergence speed. Common types include data normalization, batch normalization, and layer normalization.</dd>
+
+                    <dt>Padding</dt>
+                    <dd>The addition of extra pixels (usually zeros) around the border of an input image or feature map before applying convolution, allowing control over the spatial dimensions of the output and preserving border information.</dd>
+
+                    <dt>Parameter</dt>
+                    <dd>A learnable weight or bias value in the neural network that is adjusted during training to minimize the loss function. AlexNet contains approximately 60 million parameters across all its layers.</dd>
+
+                    <dt>Pooling</dt>
+                    <dd>An operation that reduces the spatial dimensions of feature maps by aggregating values in local regions, providing translation invariance and reducing computational complexity. Max pooling and average pooling are common variants.</dd>
+
+                    <dt>ReLU (Rectified Linear Unit)</dt>
+                    <dd>An activation function defined as f(x) = max(0, x) that outputs the input directly if positive and zero otherwise. ReLU is computationally efficient and helps mitigate the vanishing gradient problem.</dd>
+
+                    <dt>Receptive Field</dt>
+                    <dd>The region of the input image that influences a particular neuron's activation. Deeper layers have larger receptive fields, allowing them to capture more global patterns and context.</dd>
+
+                    <dt>Softmax Function</dt>
+                    <dd>An activation function that converts a vector of raw scores (logits) into a probability distribution, where all output values are positive and sum to 1.0. Used in the final layer for multi-class classification.</dd>
+
+                    <dt>Stride</dt>
+                    <dd>The number of pixels by which a filter or pooling window moves across the input. Larger strides result in smaller output dimensions and reduced computational cost but may lose fine-grained spatial information.</dd>
+
+                    <dt>Tensor</dt>
+                    <dd>A multi-dimensional array of numbers used to represent data in neural networks. Images are typically represented as 3D tensors (height × width × channels), while batches form 4D tensors.</dd>
+
+                    <dt>Top-1 Accuracy</dt>
+                    <dd>The percentage of test samples where the model's highest-probability prediction matches the correct label. AlexNet achieved approximately 62% top-1 accuracy on ImageNet validation set.</dd>
+
+                    <dt>Top-5 Accuracy</dt>
+                    <dd>The percentage of test samples where the correct label appears among the model's five highest-probability predictions. AlexNet achieved approximately 83% top-5 accuracy, winning ILSVRC 2012.</dd>
+
+                    <dt>Training</dt>
+                    <dd>The process of adjusting network parameters by presenting labeled examples and using backpropagation to minimize the difference between predictions and true labels. Training requires large datasets and substantial computational resources.</dd>
+
+                    <dt>Transfer Learning</dt>
+                    <dd>A technique where a network pre-trained on a large dataset (e.g., ImageNet) is fine-tuned for a different but related task, leveraging learned features and requiring less training data and time.</dd>
+                </dl>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ENCS 282 Technical Writing Assignment | Interactive CNN Visualization</p>
+        </div>
+    </footer>
+
+    <script src="js/alexnet.js"></script>
+    <script src="js/animation.js"></script>
+    <script src="js/explainability.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+
