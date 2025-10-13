@@ -6,6 +6,12 @@ An interactive web-based visualization of the image classification process using
 
 This project provides a comprehensive, interactive explanation of how image classification works through AlexNet's architecture. It demonstrates the complete process from input preprocessing through softmax output, with detailed visualizations and technical specifications for each stage.
 
+## 🌍 Live Website
+
+**🚀 [View Live Demo Here](https://ns-1456.github.io/AlexNet-Interactive-Visualization/)**
+
+The website is deployed and ready to use! Click the link above to explore the interactive AlexNet visualization.
+
 ## ✨ Features
 
 - **Interactive Step-Through**: Navigate through all 9 stages of the classification process
